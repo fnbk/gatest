@@ -1,12 +1,4 @@
-name: Build, Test, Tag, and Deploy
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+name: Build
 
 jobs:
   build:
