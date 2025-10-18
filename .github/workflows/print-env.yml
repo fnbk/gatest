@@ -21,7 +21,7 @@ jobs:
 
       - name: Debug NEXT_PUBLIC_SUPABASE_URL
         run: |
-          echo "NEXT_PUBLIC_SUPABASE_URL length: ${{ env.NEXT_PUBLIC_SUPABASE_URL && env.NEXT_PUBLIC_SUPABASE_URL.length || 0 }}"
+          echo "NEXT_PUBLIC_SUPABASE_URL length: ${{ vars.NEXT_PUBLIC_SUPABASE_URL && vars.NEXT_PUBLIC_SUPABASE_URL.length || 0 }}"
 
       - name: Debug NEXT_PUBLIC_SUPABASE_ANON_KEY
         run: |
@@ -29,7 +29,7 @@ jobs:
 
       - name: Check if NEXT_PUBLIC_SUPABASE_URL exist
         run: |
-          if [ -z "${{ env.NEXT_PUBLIC_SUPABASE_URL }}" ]; then
+          if [ -z "${{ vars.NEXT_PUBLIC_SUPABASE_URL }}" ]; then
             echo "NEXT_PUBLIC_SUPABASE_URL is empty!"
             exit 1
           else
@@ -38,7 +38,7 @@ jobs:
 
       - name: Check if NEXT_PUBLIC_SUPABASE_ANON_KEY exist
         run: |
-          if [ -z "${{ env.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" ]; then
+          if [ -z "${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" ]; then
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY is empty!"
             exit 1
           else
