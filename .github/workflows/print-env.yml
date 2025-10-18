@@ -19,14 +19,6 @@ jobs:
         env:
           MY_PLAIN_VAR: ${{ vars.MY_PLAIN_VAR }}
 
-      - name: Debug NEXT_PUBLIC_SUPABASE_URL
-        run: |
-          echo "NEXT_PUBLIC_SUPABASE_URL length: ${{ vars.NEXT_PUBLIC_SUPABASE_URL && vars.NEXT_PUBLIC_SUPABASE_URL.length || 0 }}"
-
-      - name: Debug NEXT_PUBLIC_SUPABASE_ANON_KEY
-        run: |
-          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY length: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY && secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY.length || 0 }}"
-
       - name: Check if NEXT_PUBLIC_SUPABASE_URL exist
         run: |
           if [ -z "${{ vars.NEXT_PUBLIC_SUPABASE_URL }}" ]; then
@@ -44,4 +36,26 @@ jobs:
           else
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY is set."
           fi
-          
+
+      - name: Check env vars
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_URL=${{ env.NEXT_PUBLIC_SUPABASE_URL }}"
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}"
+
+      - name: Create .env file
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_URL=${{ env.NEXT_PUBLIC_SUPABASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env
+
+      - name: Print .env file
+        run: |
+          cat .env
+
+
+      - name: Debug NEXT_PUBLIC_SUPABASE_URL
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_URL length: ${{ vars.NEXT_PUBLIC_SUPABASE_URL && vars.NEXT_PUBLIC_SUPABASE_URL.length || 0 }}"
+
+      - name: Debug NEXT_PUBLIC_SUPABASE_ANON_KEY
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY length: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY && secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY.length || 0 }}"
