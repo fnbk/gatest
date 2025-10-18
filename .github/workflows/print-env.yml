@@ -1,0 +1,18 @@
+name: Print Environment Variable
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  print-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Secret
+        run: echo "Secret var is ${{ secrets.MY_SECRET_VAR }}"
+
+      - name: Print Plain Variable
+        run: echo "Plain var is $MY_PLAIN_VAR"
+        env:
+          MY_PLAIN_VAR: ${{ vars.MY_PLAIN_VAR }}
